@@ -84,7 +84,7 @@ def split_dataset(dataset, frac_list=None, shuffle=False, random_state=None):
     return [Subset(dataset, indices[offset - length:offset]) for offset, length in zip(accumulate(lengths), lengths)]
 
 
-def download(url, path=None, overwrite=True, sha1_hash=None, retries=5, verify_ssl=True, log=True):
+def download(url, path=None, overwrite=True, sha1_hash=None, retries=5, verify_ssl=True, log=True, proxy_port = None):
     """Download a given URL.
 
     Codes borrowed from mxnet/gluon/utils.py
@@ -142,7 +142,14 @@ def download(url, path=None, overwrite=True, sha1_hash=None, retries=5, verify_s
             try:
                 if log:
                     print('Downloading %s from %s...' % (fname, url))
-                r = requests.get(url, stream=True, verify=verify_ssl)
+                if not proxy_port:
+                    proxy_port = 10809
+                proxy = '127.0.0.1:' + str(proxy_port)
+                proxies = {
+                    'http': 'http://' + proxy,
+                    'https': 'https://' + proxy,
+                }
+                r = requests.get(url, stream=True, verify=verify_ssl, proxies=proxies)
                 if r.status_code != 200:
                     raise RuntimeError("Failed downloading url %s" % url)
                 with open(fname, 'wb') as f:
