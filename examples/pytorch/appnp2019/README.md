@@ -1,26 +1,33 @@
+# Paper
+
+Klicpera, Johannes, Aleksandar Bojchevski, and Stephan Günnemann. “Predict Then Propagate: Graph Neural Networks Meet Personalized PageRank.” *ArXiv:1810.05997 [Cs, Stat]* , February 27, 2019. [http://arxiv.org/abs/1810.05997](http://arxiv.org/abs/1810.05997).
+
+===
+
 Predict then Propagate: Graph Neural Networks meet Personalized PageRank (APPNP)
-============
+================================================================================
 
 - Paper link: [Predict then Propagate: Graph Neural Networks meet Personalized PageRank](https://arxiv.org/abs/1810.05997)
-- Author's code repo: [https://github.com/klicperajo/ppnp](https://github.com/klicperajo/ppnp). 
+- Author's code repo: [https://github.com/klicperajo/ppnp](https://github.com/klicperajo/ppnp).
 
 Dependencies
 ------------
+
 - PyTorch 0.4.1+
 - requests
 
-``bash
-pip install torch requests
-``
+``bash pip install torch requests ``
 
 Code
------
+----
+
 The folder contains an implementation of APPNP (`appnp.py`).
 
 Results
 -------
 
 Run with following (available dataset: "cora", "citeseer", "pubmed")
+
 ```bash
 python3 train.py --dataset cora --gpu 0
 ```
